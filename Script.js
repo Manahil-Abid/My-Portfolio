@@ -4,43 +4,18 @@ function PageTransitions() {
   const sectBtns = document.querySelectorAll('.control');
   const allSections = document.querySelector('.main-content');
 
-  // Button active class
-  for (let i = 0; i < sectBtns.length; i++) {
-    sectBtns[i].addEventListener('click', function () {
-      // Remove 'active-btn' from previously active button
-      let currentBtn = document.querySelector('.active-btn');
-      if (currentBtn) {
-        currentBtn.classList.remove('active-btn');
-      }
+  // Handle button clicks
+  sectBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // Activate clicked button
+      document.querySelector('.active-btn').classList.remove('active-btn');
+      btn.classList.add('active-btn');
 
-      // Add 'active-btn' to the clicked button
-      this.classList.add('active-btn');
-
-      // Section active based on button dataset-id
-      const id = this.dataset.id;
-      if (id) {
-        sections.forEach((section) => section.classList.remove('active'));
-        const element = document.getElementById(id);
-        element.classList.add('active');
-      }
+      // Show corresponding section
+      const id = btn.dataset.id;
+      document.querySelector('.section.active').classList.remove('active');
+      document.getElementById(id).classList.add('active');
     });
-  }
-
-  // Main-content click handler
-  allSections.addEventListener('click', (e) => {
-    const id = e.target.dataset.id;
-    if (id) {
-      // Remove 'active' from all buttons
-      sectBtns.forEach((btn) => btn.classList.remove('active-btn'));
-      e.target.classList.add('active-btn');
-
-      // Remove 'active' from all sections
-      sections.forEach((section) => section.classList.remove('active'));
-
-      // Add 'active' to the clicked section
-      const element = document.getElementById(id);
-      element.classList.add('active');
-    }
   });
 }
 
