@@ -63,6 +63,19 @@ header {
 }
 }
 
+.section {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%) scale(0);
+  transition: all 0.4s ease-in-out;
+}
+
+.section.active {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
 
 section {
  min-height: 100vh;
@@ -72,11 +85,11 @@ section {
   left: 0;
   padding: 3rem 18rem;
 }
-.section{
+/* .section{
   transform: translateY(-100%) scale(0);
   transition: all 0.4s ease-in-out;
   background-color: var(--primary);
-}
+} */
 .sec1{
   display: none;
   transform: translateY(0) scale(1);
